@@ -4,7 +4,7 @@ pipeline {
     stage('build image') {
       steps {
         git(url: 'https://github.com/SirTediousOfFoo/pipelinetest.git', branch: 'master', changelog: true)
-        sh 'docker build . -t superapp:$(date +%s) -t superapp:latest'
+        sh 'docker build . -t superapp:$TIME -t superapp:latest'
       }
     }
 
@@ -20,8 +20,18 @@ curl -f --show-error 127.0.0.1:8081/index.html'''
         sh 'curl -f --show-error 127.0.0.1:8083'
         sh '''curl -f --show-error 127.0.0.1:8082
 '''
+        sh 'docker kill $(docker container ls -q)'
       }
     }
 
+    stage('deploy image') {
+      steps {
+        echo 'kubectl apply -f deployment.yaml'
+      }
+    }
+
+  }
+  environment {
+    TIME = '$(date +%s)'
   }
 }
