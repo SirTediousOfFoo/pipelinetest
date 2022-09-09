@@ -4,7 +4,7 @@ pipeline {
     stage('build image') {
       steps {
         git(url: 'https://github.com/SirTediousOfFoo/pipelinetest.git', branch: 'master', changelog: true)
-        sh 'docker build . -t superapp:$(date +%s)'
+        sh 'docker build . -t superapp:$(date +%s) -t superapp:latest'
       }
     }
 
