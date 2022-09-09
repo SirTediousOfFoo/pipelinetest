@@ -33,6 +33,6 @@ curl -f --show-error 127.0.0.1:8081/index.html'''
 
   }
   environment {
-    BUILD = 'TIME=$(date +%s)'
+    BUILD = '${env.BUILD_ID}-${env.GIT_COMMIT}'
   }
 }
