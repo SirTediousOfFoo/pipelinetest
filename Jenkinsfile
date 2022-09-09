@@ -10,7 +10,7 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'docker run -p 8081:81 -p 8082:82 -p 8083:83 superapp:latest '
+        sh 'docker run -p 8081:81 -p 8082:82 -p 8083:83 -d superapp:latest '
         echo 'App1 availability'
         sh '''
 curl -f --show-error 127.0.0.1:8081/index.html'''
