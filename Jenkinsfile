@@ -21,7 +21,7 @@ curl -f --show-error 127.0.0.1:8081/index.html'''
         sh 'curl -f --show-error 127.0.0.1:8083'
         sh '''curl -f --show-error 127.0.0.1:8082
 '''
-        sh 'docker kill $(docker container ls -q)'
+        sh 'docker kill $(docker ps -q)'
       }
     }
 
