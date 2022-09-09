@@ -4,7 +4,8 @@ pipeline {
     stage('build image') {
       steps {
         git(url: 'https://github.com/SirTediousOfFoo/pipelinetest.git', branch: 'master', changelog: true)
-        sh 'docker build . -t superapp:$TIME -t superapp:latest'
+        sh 'TIME=$(date +%s)'
+        sh 'docker build . -t superapp:$BUILD -t superapp:latest'
       }
     }
 
@@ -32,6 +33,6 @@ curl -f --show-error 127.0.0.1:8081/index.html'''
 
   }
   environment {
-    TIME = '$(date +%s)'
+    BUILD = 'TIME=$(date +%s)'
   }
 }
