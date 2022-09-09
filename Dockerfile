@@ -62,7 +62,7 @@ RUN mkdir -p $APACHE_LOCK_DIR
 RUN mkdir -p $APACHE_LOG_DIR
 
 COPY ./config/docker-entrypoint.sh /docker-entrypoint.sh
-COPY ./apps/* /var/www/html/
+COPY ./apps /var/www/html/
 COPY ./config/php/php.ini /usr/local/etc/php/conf.d/local.ini
 COPY ./config/vhosts /etc/apache2/sites-enabled/
 WORKDIR /var/www/html/
